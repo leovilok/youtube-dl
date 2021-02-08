@@ -213,6 +213,8 @@ class YoutubeDL(object):
     nocheckcertificate:Do not verify SSL certificates
     prefer_insecure:   Use HTTP instead of HTTPS to retrieve information.
                        At the moment, this is only supported by YouTube.
+    youtube_avoid_unreachable_domain:   Use alternative googlevideo sub-domain
+                       if the first provided one is unreachable.
     proxy:             URL of the proxy server to use
     geo_verification_proxy:  URL of the proxy to use for IP address verification
                        on geo-restricted sites.

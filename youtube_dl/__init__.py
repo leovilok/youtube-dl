@@ -399,6 +399,7 @@ def _real_main(argv=None):
         'cookiefile': opts.cookiefile,
         'nocheckcertificate': opts.no_check_certificate,
         'prefer_insecure': opts.prefer_insecure,
+        'youtube_avoid_unreachable_domain': opts.youtube_avoid_unreachable_domain,
         'proxy': opts.proxy,
         'socket_timeout': opts.socket_timeout,
         'bidi_workaround': opts.bidi_workaround,

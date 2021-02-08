@@ -364,6 +364,9 @@ Alternatively, refer to the [developer instructions](#developer-instructions) fo
                                          possible number of seconds to sleep).
                                          Must only be used along with --min-
                                          sleep-interval.
+    --youtube-avoid-unreachable-domain   Use alternative googlevideo sub-domain
+                                         if the first provided one is
+                                         unreachable
 
 ## Video Format Options:
     -f, --format FORMAT                  Video format code, see the "FORMAT

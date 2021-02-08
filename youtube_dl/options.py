@@ -572,6 +572,10 @@ def parseOpts(overrideArguments=None):
             'Upper bound of a range for randomized sleep before each download '
             '(maximum possible number of seconds to sleep). Must only be used '
             'along with --min-sleep-interval.'))
+    workarounds.add_option(
+        '--youtube-avoid-unreachable-domain',
+        '--youtube-avoid-unreachable-domain', action='store_true', dest='youtube_avoid_unreachable_domain', default=False,
+        help='Use alternative googlevideo sub-domain if the first provided one is unreachable')
 
     verbosity = optparse.OptionGroup(parser, 'Verbosity / Simulation Options')
     verbosity.add_option(

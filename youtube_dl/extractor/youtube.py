@@ -15,6 +15,7 @@ from ..compat import (
     compat_HTTPError,
     compat_parse_qs,
     compat_str,
+    compat_urllib_parse,
     compat_urllib_parse_unquote_plus,
     compat_urllib_parse_urlencode,
     compat_urllib_parse_urlparse,
@@ -1542,6 +1543,19 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
                 signature = self._decrypt_signature(sc['s'][0], video_id, player_url)
                 sp = try_get(sc, lambda x: x['sp'][0]) or 'signature'
                 fmt_url += '&' + sp + '=' + signature
+
+            if self._downloader.params.get('youtube_avoid_unreachable_domain'):
+                parsed_fmt_url = compat_urllib_parse_urlparse(fmt_url)
+                domain_test_url = compat_urllib_parse.urlunparse((parsed_fmt_url.scheme, parsed_fmt_url.netloc, "", "", "", ""))
+                # check if the provided domain is reachable
+                try:
+                    with self._downloader.urlopen(domain_test_url):
+                        pass
+                except Exception:
+                    mn = try_get(compat_parse_qs(parsed_fmt_url.query), lambda x: x['mn'][0])
+                    if mn and ',' in mn:
+                        alt_domains = mn.split(',')
+                        fmt_url = re.sub(alt_domains[0], alt_domains[1], fmt_url, count=1)
 
             if itag:
                 itags.append(itag)
